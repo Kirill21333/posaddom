@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ПосадДом</title>
+<style>
+:root{--bg:#fff;--fg:#222;--muted:#666;--line:#ccc;--code:#f3f3f3}
+@media (prefers-color-scheme:dark){:root{--bg:#1b1b1b;--fg:#e6e6e6;--muted:#999;--line:#444;--code:#2a2a2a}}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 Arial,sans-serif}
+main{max-width:900px;margin:0 auto;padding:24px 16px 60px}
+h1{margin-bottom:4px}h2{margin-top:36px;border-bottom:1px solid var(--line);padding-bottom:4px}
+.muted{color:var(--muted)}
+pre{background:var(--code);padding:12px;overflow:auto;border:1px solid var(--line)}
+code{background:var(--code);padding:1px 4px}
+figure{margin:20px 0}figure img{max-width:100%;border:1px solid var(--line)}
+figcaption{color:var(--muted);font-size:14px;margin-top:4px}
+table{border-collapse:collapse}td,th{border:1px solid var(--line);padding:4px 10px;text-align:left}
+</style>
+</head>
+<body>
+<main>
+<h1>ПосадДом</h1>
+<p class="muted">Информационная система для приёма и контроля заявок на техническое обслуживание многоквартирных домов (курсовой проект, ООО УК «Посадское обслуживание домов»).</p>
+
+<p>Это статичная страница с описанием. Само приложение написано на PHP и MariaDB, поэтому на GitHub Pages оно не запускается, его нужно запускать у себя. Исходный код лежит в репозитории.</p>
+
+<h2>Что умеет</h2>
+<ul>
+<li>регистрация заявок с номером вида <code>А-2026-000145</code> и расчётом сроков по срочности (аварийная, срочная, плановая);</li>
+<li>автоназначение исполнителя по специализации, дому, смене и загрузке, очередь для ручного назначения;</li>
+<li>контроль сроков: предупреждение на 75 % времени и отметка о просрочке;</li>
+<li>история статусов, которую нельзя менять, блокировка закрытой заявки;</li>
+<li>фото к заявкам, проверка дублей клиентов;</li>
+<li>каталог услуг и начисления по платным услугам;</li>
+<li>панель руководителя, отчёты с выгрузкой в XLSX;</li>
+<li>роли: диспетчер, исполнитель, руководитель, администратор;</li>
+<li>уведомления (SMS и почта пишутся в файлы), очередь обмена с ГИС ЖКХ и РСО в виде заглушек.</li>
+</ul>
+
+<h2>Экраны</h2>
+<figure><img src="img/1_login.png" alt="Вход"><figcaption>Вход в систему</figcaption></figure>
+<figure><img src="img/2_requests_list.png" alt="Список заявок"><figcaption>Список заявок</figcaption></figure>
+<figure><img src="img/3_new_request.png" alt="Новая заявка"><figcaption>Новая заявка</figcaption></figure>
+<figure><img src="img/4_request_card.png" alt="Карточка заявки"><figcaption>Карточка заявки</figcaption></figure>
+<figure><img src="img/5_services.png" alt="Услуги"><figcaption>Каталог услуг</figcaption></figure>
+<figure><img src="img/6_dashboard.png" alt="Панель руководителя"><figcaption>Панель руководителя</figcaption></figure>
+
+<h2>Стек</h2>
+<p>HTML, CSS и JavaScript без сборки (одностраничное приложение), PHP 8.2 без фреймворка, MariaDB 10.4+ (35 таблиц, представления, триггеры).</p>
+
+<h2>Запуск</h2>
+<p>Нужны PHP 8.2 и MariaDB (на Windows подойдёт XAMPP).</p>
+<pre>git clone https://github.com/Kirill21333/posaddom.git
+cd posaddom
+php database/install.php --demo
+php -S 127.0.0.1:8300 -t public public/index.php</pre>
+<p>После этого открыть <code>http://127.0.0.1:8300</code>. На Windows можно просто запустить <code>start.bat</code>.</p>
+
+<h2>Демо-аккаунты</h2>
+<p>Пароль у всех <code>Demo12345</code>.</p>
+<table>
+<tr><th>Логин</th><th>Роль</th></tr>
+<tr><td>morozova.ev</td><td>диспетчер</td></tr>
+<tr><td>vasilyev.op</td><td>руководитель</td></tr>
+<tr><td>gromov.ks</td><td>администратор</td></tr>
+<tr><td>smirnov.av</td><td>исполнитель</td></tr>
+</table>
+
+<h2>Тесты</h2>
+<p>Папка <code>tests</code>: unit-тесты на PHP, API-тесты и e2e-тесты в браузере. Запуск <code>tests\run_all.bat</code> (база пересоздаётся).</p>
+</main>
+</body>
+</html>
